@@ -23,20 +23,24 @@ Como me ensinar:
 
 ## Onde Paramos
 
-### Estrutura criada
-- `src/components/sections/` com 6 arquivos: Hero, About, Skills, Projects, Experience, Contact
-- `src/components/sections/index.ts` com barrel exports
-- `src/app/page.tsx` importando e usando todas as seções
-- Site roda em branco (esperado — seções ainda vazias)
+### Concluído nesta sessão
+- Shadcn/UI instalado (`npx shadcn@latest init`) — preset Nova, Tailwind v4, Radix
+  - Criou `src/components/ui/button.tsx` e `src/lib/utils.ts`
+- `Hero.tsx` implementado com:
+  - `'use client'`
+  - Framer Motion (`initial`, `animate`, `transition`)
+  - Nome, cargo e descrição
+  - Sem Tailwind ainda (próximo passo)
 
-### Próximo passo
-Implementar o componente `Hero.tsx` com:
+### Conteúdo do Hero
 - **Nome:** Gabriel de Melo Meurer
 - **Cargo:** Desenvolvedor Full Stack
-- **Frase:** Da API ao clique: construindo do zero ao deploy.
+- **Descrição:** Desenvolvedor Full Stack com 2 anos de experiência, trabalhando com React, Next.js, OracleDB, JavaScript, Python
 
-Depois de escrever o JSX básico, adicionar `'use client'` e Framer Motion para animações.
-Depois partir para `layout.tsx` com Navbar e next-themes (tema dark/light).
+### Próximo passo
+1. Adicionar classes Tailwind no Hero (section, h1, h2, p)
+2. Verificar qual arquivo importa as seções (provavelmente `src/app/page.tsx`) e testar no browser
+3. Depois partir para `layout.tsx` com Navbar e next-themes (tema dark/light)
 
 ---
 
