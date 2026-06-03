@@ -24,23 +24,31 @@ Como me ensinar:
 ## Onde Paramos
 
 ### Concluído nesta sessão
-- Shadcn/UI instalado (`npx shadcn@latest init`) — preset Nova, Tailwind v4, Radix
-  - Criou `src/components/ui/button.tsx` e `src/lib/utils.ts`
-- `Hero.tsx` implementado com:
-  - `'use client'`
-  - Framer Motion (`initial`, `animate`, `transition`)
-  - Nome, cargo e descrição
-  - Sem Tailwind ainda (próximo passo)
+- Corrigido erro de build: `tw-animate-css` não instalado → instalado via npm
+- Fonte trocada para **Space Grotesk** (`next/font/google`, variável `--font-sans`)
+- `ThemeProvider` do `next-themes` configurado no `layout.tsx` com `attribute="class"`
+- **Navbar** criada em `src/components/layout/Navbar.tsx` com:
+  - Nome à esquerda
+  - Links centralizados com `absolute left-1/2 -translate-x-1/2` (Sobre, Formação, Experiências, Projetos)
+  - Toggle dark/light com ícones Sun/Moon do Lucide
+  - Botão PT (i18n visual, sem lógica — Fase 2)
+  - Links LinkedIn e Instagram com `react-icons/fa`
+  - Dark mode: `bg-white dark:bg-gray-950`
+- **Hero** parcialmente estilizado:
+  - `bg-gray-950`, `py-24`, `text-center`
+  - Framer Motion com `initial={{ opacity: 0, y: -20 }}`, `duration: 1`
+  - h1 e h2 lado a lado com flex (ainda tem bug: `item-center` sem s, `gap-150` inválido)
 
-### Conteúdo do Hero
-- **Nome:** Gabriel de Melo Meurer
-- **Cargo:** Desenvolvedor Full Stack
-- **Descrição:** Desenvolvedor Full Stack com 2 anos de experiência, trabalhando com React, Next.js, OracleDB, JavaScript, Python
+### Pendências / Bugs conhecidos
+- Hero: linha 11 tem `item-center` (falta o s) e `gap-150` (não existe) — precisa corrigir
+- Hero: h1 e h2 estão muito separados por causa do gap inválido
+- Navbar: botão PT sem lógica de i18n (intencional, Fase 2)
+- Nenhuma seção além do Hero tem conteúdo ainda
 
 ### Próximo passo
-1. Adicionar classes Tailwind no Hero (section, h1, h2, p)
-2. Verificar qual arquivo importa as seções (provavelmente `src/app/page.tsx`) e testar no browser
-3. Depois partir para `layout.tsx` com Navbar e next-themes (tema dark/light)
+1. Corrigir o bug do Hero (`items-center` e `gap-4`)
+2. Estilizar melhor o Hero (hierarquia tipográfica, cor do cargo em azul, descrição com `max-w`)
+3. Construir a seção **Sobre**
 
 ---
 
@@ -60,5 +68,5 @@ Como me ensinar:
 ## Roadmap de Features
 
 1. **Fase 1 (atual):** Portfólio base em PT-BR
-2. **Fase 2:** Internacionalização PT-BR + EN
+2. **Fase 2:** Internacionalização PT-BR + EN (usar `next-intl`)
 3. **Fase 3:** Botão de export de currículo em PDF por idioma
