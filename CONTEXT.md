@@ -21,6 +21,46 @@ Como me ensinar:
 
 ---
 
+## Design System — Hero (UI/UX Pro Max)
+
+### Estilo
+- **Motion-Driven:** animações de entrada, microinterações, scroll effects
+- Ferramenta: Framer Motion (já instalado)
+
+### Paleta de Cores
+| Papel | Light | Dark |
+|---|---|---|
+| Background | `#FAFAFA` | `#09090B` |
+| Texto | `#09090B` | `#FAFAFA` |
+| Acento / CTA | `#2563EB` | `#2563EB` |
+| Secundário | `#3F3F46` | `#3F3F46` |
+
+### Tipografia
+- Manter **Space Grotesk** (mais profissional que Caveat/Quicksand sugerido pela skill)
+
+### Estrutura do Hero
+1. Nome + cargo em destaque
+2. Breve descrição
+3. CTAs — "Ver Projetos" + "Contato"
+4. Foto (a decidir)
+
+### Layout (a decidir)
+- [ ] Duas colunas (texto esquerda + foto direita)
+- [ ] Centralizado (sem foto ou foto ao fundo)
+
+### Regras de Animação
+- Usar `transform` e `opacity` — nunca `width/height/top/left`
+- Duração: 150–300ms microinterações, até 600ms para entradas
+- Sempre respeitar `prefers-reduced-motion`
+- Padrão Framer Motion: `initial → animate` por elemento com `delay` em sequência
+
+### Anti-patterns a Evitar
+- Não usar emojis como ícones (usar Lucide)
+- Não misturar estilos (manter Motion-Driven em todas as seções)
+- Não animar `width/height` — quebra performance
+
+---
+
 ## Onde Paramos
 
 ### Concluído
