@@ -23,32 +23,30 @@ Como me ensinar:
 
 ## Onde Paramos
 
-### Concluído nesta sessão
-- Corrigido erro de build: `tw-animate-css` não instalado → instalado via npm
-- Fonte trocada para **Space Grotesk** (`next/font/google`, variável `--font-sans`)
-- `ThemeProvider` do `next-themes` configurado no `layout.tsx` com `attribute="class"`
-- **Navbar** criada em `src/components/layout/Navbar.tsx` com:
-  - Nome à esquerda
-  - Links centralizados com `absolute left-1/2 -translate-x-1/2` (Sobre, Formação, Experiências, Projetos)
-  - Toggle dark/light com ícones Sun/Moon do Lucide
+### Concluído
+- Fonte **Space Grotesk** + `ThemeProvider` configurados
+- **Navbar responsiva** (`src/components/layout/Navbar.tsx`):
+  - Nome à esquerda, links centralizados no desktop (`absolute left-1/2 -translate-x-1/2`)
+  - Menu hamburguer no mobile com `AnimatePresence` + `motion.div` (Framer Motion)
+  - Dropdown animado com `initial/animate/exit` — entrada e saída suaves
+  - Toggle dark/light com `useEffect + mounted` para evitar hydration mismatch
   - Botão PT (i18n visual, sem lógica — Fase 2)
-  - Links LinkedIn e Instagram com `react-icons/fa`
-  - Dark mode: `bg-white dark:bg-gray-950`
-- **Hero** parcialmente estilizado:
-  - `bg-gray-950`, `py-24`, `text-center`
-  - Framer Motion com `initial={{ opacity: 0, y: -20 }}`, `duration: 1`
-  - h1 e h2 lado a lado com flex (ainda tem bug: `item-center` sem s, `gap-150` inválido)
+  - Links GitHub e LinkedIn com `react-icons/fa`
+  - `overflow-x-hidden` no body para evitar scroll lateral no mobile
+  - Commit: `28ddb8b`
+- **Hero** atual (`src/components/sections/Hero.tsx`):
+  - Fundo `bg-gray-950`, tela cheia `h-screen`
+  - Cargo centralizado, descrição, dois botões CTA, ícones GitHub + LinkedIn
+  - Animações em sequência com Framer Motion (delay por elemento)
 
-### Pendências / Bugs conhecidos
-- Hero: linha 11 tem `item-center` (falta o s) e `gap-150` (não existe) — precisa corrigir
-- Hero: h1 e h2 estão muito separados por causa do gap inválido
+### Pendências
+- Hero: layout ainda não foi implementado — usuário rejeitou o write, quer fazer ele mesmo
 - Navbar: botão PT sem lógica de i18n (intencional, Fase 2)
 - Nenhuma seção além do Hero tem conteúdo ainda
 
 ### Próximo passo
-1. Corrigir o bug do Hero (`items-center` e `gap-4`)
-2. Estilizar melhor o Hero (hierarquia tipográfica, cor do cargo em azul, descrição com `max-w`)
-3. Construir a seção **Sobre**
+1. Implementar o Hero (usuário prefere escrever o código, professor orienta)
+2. Construir a seção **Sobre**
 
 ---
 
