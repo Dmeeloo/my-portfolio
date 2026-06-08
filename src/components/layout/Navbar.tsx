@@ -7,12 +7,23 @@ import { useState, useEffect } from "react"
 import { Sun, Moon, Menu, X } from "lucide-react"
 import { FaLinkedin, FaInstagram } from "react-icons/fa"
 import { motion, AnimatePresence } from "framer-motion"
+import { useLocale } from "next-intl"
+import { usePathname, useRouter } from "next/navigation"
 
 export function Navbar() {
-
+    
     const [ openMenu, setOpenMenu ] = useState(false);
     const [ mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
+
+    const locale = useLocale()
+    const path = usePathname()
+    const router = useRouter()
+
+    function toggleLocale(){
+        const nextLocale = locale === 'pt' ? 'en' : 'pt'
+        window.location.href = `/${nextLocale}`
+    }
 
     useEffect(() => {
         setMounted(true);
@@ -41,7 +52,7 @@ export function Navbar() {
                         href="#projetos">Projetos</Link>
                 </div>
                 <div className="ml-auto flex items-center gap-2 ">
-                    <Button variant="ghost" size="sm">PT</Button>   
+                    <Button variant="ghost" size="sm" onClick={toggleLocale}>{locale.toUpperCase()}</Button>   
                     <Button onClick={() => setOpenMenu(!openMenu)} className="md:hidden p-2">
                         {openMenu ? <X/> : <Menu/>}
                     </Button>

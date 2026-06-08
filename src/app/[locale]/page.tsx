@@ -4,7 +4,7 @@ import {
   Experience,
   Projects,
   Skills
-} from '../components/sections'
+} from '../../components/sections'
 import { ParticleCanvas } from '@/components/ui/ParticleCanvas';
 
 export default function Home() {

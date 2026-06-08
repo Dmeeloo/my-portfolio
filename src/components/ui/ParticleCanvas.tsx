@@ -1,49 +1,56 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react"
+import { useTheme } from "next-themes"
 
 export function ParticleCanvas() {
-    
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    
+    const { resolvedTheme } = useTheme()
+
     useEffect(() => {
-        const canvas = canvasRef.current
-        const ctx = canvas.getContext('2d')
+        const canvas = canvasRef.current!
+        const ctx = canvas.getContext('2d')!
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
-        const particles = []
+        const color = resolvedTheme === 'dark' ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.4)'
 
-        for(let i = 0; i < 100; i++){
-            particles.push({ x:Math.random() * canvas.width, y:Math.random() * canvas.height, radius: 2, vx:Math.random() * 2 - 1, vy:Math.random() * 2 - 1 })
-        }
+        const particles = Array.from({ length: 150 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+        }))
 
+        let animId: number
         function animate() {
+            animId = requestAnimationFrame(animate)
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-            ctx.fillStyle = 'white'
-            particles.forEach(particle => {
-                if (particle.x > canvas.width){
-                    particle.vx *= -1
-                } if (particle.x < 0){
-                    particle.vx *= -1
-                }
-                if (particle.y > canvas.height){
-                    particle.vy *= -1
-                } if (particle.y < 0){
-                    particle.vy *= -1
-                }
-                particle.x += particle.vx
-                particle.y += particle.vy
+
+            particles.forEach(p => {
+                p.x += p.vx
+                p.y += p.vy
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+
+                ctx.fillStyle = color
                 ctx.beginPath()
-                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
+                ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2)
                 ctx.fill()
             })
-            requestAnimationFrame(animate)
         }
         animate()
-        console.log('componente montou')
-    }, [])
 
-    return(
-        <canvas ref={canvasRef} className='fixed inset-0 z-0'/>
-    )
+        function onResize() {
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+        }
+        window.addEventListener('resize', onResize)
+
+        return () => {
+            cancelAnimationFrame(animId)
+            window.removeEventListener('resize', onResize)
+        }
+    }, [resolvedTheme])
+
+    return <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
 }
