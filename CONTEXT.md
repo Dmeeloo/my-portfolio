@@ -74,19 +74,29 @@ Como me ensinar:
   - Links GitHub e LinkedIn com `react-icons/fa`
   - `overflow-x-hidden` no body para evitar scroll lateral no mobile
   - Commit: `28ddb8b`
+- **ParticleCanvas** (`src/components/ui/ParticleCanvas.tsx`):
+  - Canvas `fixed inset-0 z-0` — cobre toda a página como fundo
+  - 100 partículas com posição e velocidade aleatórias
+  - Loop de animação com `requestAnimationFrame`
+  - Partículas quicam nas 4 bordas (`vx *= -1` / `vy *= -1`)
+  - Canvas dimensionado com `window.innerWidth` / `window.innerHeight`
+  - Usado em `page.tsx` antes do Hero
 - **Hero** atual (`src/components/sections/Hero.tsx`):
-  - Fundo `bg-gray-950`, tela cheia `h-screen`
-  - Cargo centralizado, descrição, dois botões CTA, ícones GitHub + LinkedIn
-  - Animações em sequência com Framer Motion (delay por elemento)
+  - Sem `bg-gray-950` (fundo é o ParticleCanvas)
+  - `relative z-10` para ficar na frente do canvas
+  - Animações em sequência com Framer Motion
 
 ### Pendências
-- Hero: layout ainda não foi implementado — usuário rejeitou o write, quer fazer ele mesmo
+- ParticleCanvas: próximo passo é fazer as partículas formarem **shapes por seção** (dispersas → forma → dispersas)
+- Hero: layout ainda básico, sem foto
 - Navbar: botão PT sem lógica de i18n (intencional, Fase 2)
 - Nenhuma seção além do Hero tem conteúdo ainda
 
 ### Próximo passo
-1. Implementar o Hero (usuário prefere escrever o código, professor orienta)
-2. Construir a seção **Sobre**
+1. Adicionar `targetX` e `targetY` em cada partícula
+2. Definir pontos que formam shapes (pasta para Projetos, etc.)
+3. Usar `IntersectionObserver` para detectar qual seção está visível
+4. Interpolar posição atual → target com lerp (`x += (targetX - x) * 0.05`)
 
 ---
 
