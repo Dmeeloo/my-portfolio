@@ -3,9 +3,15 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { Button } from "../ui/button"
+import { useLocale } from "next-intl"
 
 export function Hero() {
     const t = useTranslations()
+    const locale = useLocale()
+
+    const cvUrl = locale === 'pt' ? '/cv_gabriel_meurer_v2.pdf' : '/cv_gabriel_meurer_en.pdf'
+
     return (
         <section id="hero" className="py-24 text-center relative z-10">
             <motion.div
@@ -30,6 +36,9 @@ export function Hero() {
                 </div>
 
                 <p className="text-xl text-muted-foreground max-w-2xl">{t('description')}</p>
+                <a href={cvUrl} target="_blank">
+                    <Button>{t('donwCv')}</Button>
+                </a>
             </motion.div>
         </section>
     )
