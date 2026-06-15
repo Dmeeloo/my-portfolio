@@ -39,7 +39,7 @@ export function Navbar() {
 
     return (
         <div className="relative">
-            <nav className="flex items-center gap-6 justify-center px-6 md:px-12 py-4 bg-white dark:bg-gray-950">
+            <nav className="flex items-center gap-6 justify-center px-6 md:px-12 py-4">
                 <div className="text-lg font-bold">Gabriel de Melo Meurer</div>
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-6">
                     <Link className="text-lg text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white"
