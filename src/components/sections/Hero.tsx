@@ -37,7 +37,7 @@ export function Hero() {
 
                 <p className="text-xl text-muted-foreground max-w-2xl">{t('description')}</p>
                 <a href={cvUrl} target="_blank">
-                    <Button>{t('donwCv')}</Button>
+                    <Button className="hover:text-black dark:text-black dark:hover:text-white">{t('donwCv')}</Button>
                 </a>
             </motion.div>
         </section>
