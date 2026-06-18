@@ -39,11 +39,12 @@ export function Hero() {
 
       <div className="relative max-w-3xl text-center">
         <motion.div {...entry(0)} className="flex justify-center mb-6">
-          <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden ring-2 ring-primary/30 shadow-xl">
+          <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full overflow-hidden ring-2 ring-primary/30 shadow-xl">
             <Image
               src={siteConfig.photo}
               alt={siteConfig.name}
               fill
+              sizes="(min-width: 768px) 224px, (min-width: 640px) 192px, 160px"
               className="object-cover object-[center_15%]"
               priority
             />

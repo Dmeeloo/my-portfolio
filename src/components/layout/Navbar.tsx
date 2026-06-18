@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Button } from "../ui/button"
 import { useTheme } from "next-themes"
@@ -43,7 +44,18 @@ export function Navbar() {
     return (
         <div className="relative">
             <nav className="flex items-center gap-6 justify-center px-6 md:px-12 py-4">
-                <div className="text-lg font-bold">{siteConfig.name}</div>
+                <div className="flex items-center gap-2 text-lg font-bold">
+                    {mounted && (
+                        <Image
+                            src={theme === 'dark' ? siteConfig.logo.dark : siteConfig.logo.light}
+                            alt={siteConfig.name}
+                            width={28}
+                            height={28}
+                            className="shrink-0"
+                        />
+                    )}
+                    {siteConfig.name}
+                </div>
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-6">
                     <Link className="relative text-lg text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
                         href="#sobre">{t.raw("about")}</Link>

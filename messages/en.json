@@ -111,6 +111,10 @@
         "images": [
           { "src": "/projects/frotaon-mobile-dark.jpeg", "alt": "FrotaON — dark theme" },
           { "src": "/projects/frotaon-mobile-light.jpeg", "alt": "FrotaON — light theme" }
+        ],
+        "webImages": [
+          { "src": "/projects/frotaon-web-light.jpeg", "alt": "FrotaON — web app, light theme" },
+          { "src": "/projects/frotaon-web-dark.jpeg", "alt": "FrotaON — web app, dark theme" }
         ]
       }
     ]

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from "react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
@@ -20,6 +21,52 @@ type ProjectItem = {
   branding?: string
   tags: string[]
   images?: ProjectImage[]
+  webImages?: ProjectImage[]
+}
+
+function ImageStack({
+  images,
+  cardWidth,
+  cardHeight,
+  sizes,
+}: {
+  images: ProjectImage[]
+  cardWidth: number
+  cardHeight: number
+  sizes: string
+}) {
+  const [frontIndex, setFrontIndex] = useState(0)
+  const offset = 16
+
+  return (
+    <div
+      className="relative shrink-0"
+      style={{ width: cardWidth + offset, height: cardHeight + offset }}
+    >
+      {images.map((image, idx) => {
+        const isFront = idx === frontIndex
+        return (
+          <motion.button
+            key={image.src}
+            type="button"
+            onClick={() =>
+              setFrontIndex(isFront ? (idx + 1) % images.length : idx)
+            }
+            className="absolute rounded-xl overflow-hidden border border-zinc-800 shadow-xl cursor-pointer"
+            style={{ width: cardWidth, height: cardHeight, zIndex: isFront ? 2 : 1 }}
+            animate={{
+              left: isFront ? offset : 0,
+              top: isFront ? offset : 0,
+              rotate: isFront ? -3 : 4,
+            }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image src={image.src} alt={image.alt} fill className="object-cover" sizes={sizes} />
+          </motion.button>
+        )
+      })}
+    </div>
+  )
 }
 
 export function Projects() {
@@ -62,65 +109,53 @@ export function Projects() {
                 {...entry(0.24 + i * 0.1)}
                 className="p-6 sm:p-8 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 hover:border-primary transition-colors duration-300"
               >
-                <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
-                  <div>
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="p-2.5 rounded-lg bg-primary/10 shrink-0">
-                        <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">{item.name}</h3>
-                          <span className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
-                            <Lock className="w-3 h-3" />
-                            {internalBadge}
-                          </span>
-                        </div>
-                        <p className="text-sm text-zinc-500">{item.context}</p>
-                      </div>
+                <div>
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="p-2.5 rounded-lg bg-primary/10 shrink-0">
+                      <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
                     </div>
-
-                    <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400 mb-4">
-                      {item.description}
-                    </p>
-
-                    {item.branding && (
-                      <p className="flex items-start gap-2 text-sm text-zinc-500 dark:text-zinc-400 mb-4">
-                        <Palette className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        {item.branding}
-                      </p>
-                    )}
-
-                    <div className="flex flex-wrap gap-2">
-                      {item.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
-                        >
-                          {tag}
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">{item.name}</h3>
+                        <span className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
+                          <Lock className="w-3 h-3" />
+                          {internalBadge}
                         </span>
-                      ))}
+                      </div>
+                      <p className="text-sm text-zinc-500">{item.context}</p>
                     </div>
                   </div>
 
-                  {item.images && item.images.length > 0 && (
-                    <div className="flex justify-center gap-3">
-                      {item.images.map((image, j) => (
-                        <div
-                          key={image.src}
-                          className={`relative w-32 sm:w-36 rounded-xl overflow-hidden border border-zinc-800 shadow-xl ${
-                            j % 2 === 1 ? "rotate-2 translate-y-3" : "-rotate-2"
-                          }`}
-                        >
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            width={610}
-                            height={1356}
-                            className="w-full h-auto"
-                          />
-                        </div>
-                      ))}
+                  <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400 mb-4">
+                    {item.description}
+                  </p>
+
+                  {item.branding && (
+                    <p className="flex items-start gap-2 text-sm text-zinc-500 dark:text-zinc-400 mb-4">
+                      <Palette className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                      {item.branding}
+                    </p>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    {item.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {((item.images && item.images.length > 0) || (item.webImages && item.webImages.length > 0)) && (
+                    <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
+                      {item.images && item.images.length > 0 && (
+                        <ImageStack images={item.images} cardWidth={160} cardHeight={356} sizes="160px" />
+                      )}
+                      {item.webImages && item.webImages.length > 0 && (
+                        <ImageStack images={item.webImages} cardWidth={460} cardHeight={220} sizes="460px" />
+                      )}
                     </div>
                   )}
                 </div>
