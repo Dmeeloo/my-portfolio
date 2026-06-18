@@ -1,13 +1,20 @@
 import { getRequestConfig } from "next-intl/server";
-import pt from "../../messages/pt.json"
-import en from "../../messages/en.json"
+import { cookies } from "next/headers";
 
-const messageMap = { pt, en } as const
+export const locales = ["pt", "en"] as const;
+export type Locale = (typeof locales)[number];
+export const defaultLocale: Locale = "pt";
+export const localeCookieName = "NEXT_LOCALE";
 
-export default getRequestConfig(async ({ requestLocale }) => {
-    const locale = ((await requestLocale) ?? 'pt') as keyof typeof messageMap
-    return {
-        locale,
-        messages: messageMap[locale] ?? pt
-    }
-})
+export default getRequestConfig(async () => {
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get(localeCookieName)?.value;
+  const locale = locales.includes(cookieLocale as Locale)
+    ? (cookieLocale as Locale)
+    : defaultLocale;
+
+  return {
+    locale,
+    messages: (await import(`../../messages/${locale}.json`)).default,
+  };
+});

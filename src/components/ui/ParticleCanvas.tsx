@@ -12,9 +12,9 @@ export function ParticleCanvas() {
         const ctx = canvas.getContext('2d')!
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
-        const color = resolvedTheme === 'dark' ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.4)'
+        const color = resolvedTheme === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.2)'
 
-        const particles = Array.from({ length: 150 }, () => ({
+        const particles = Array.from({ length: 90 }, () => ({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             vx: (Math.random() - 0.5) * 0.6,
@@ -52,5 +52,5 @@ export function ParticleCanvas() {
         }
     }, [resolvedTheme])
 
-    return <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
+    return <canvas ref={canvasRef} className="fixed inset-0 -z-10 pointer-events-none" />
 }

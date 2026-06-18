@@ -65,56 +65,44 @@ Como me ensinar:
 
 ### Concluído
 - Fonte **Space Grotesk** + `ThemeProvider` configurados
+- **Design tokens**: `--primary`/`--ring`/`--sidebar-primary`/`--sidebar-ring` remapeados para o azul de marca (`oklch(54.6% 0.245 262.881)` ≈ `#2563EB`) direto no tema shadcn — sem cor hardcoded espalhada pelo código
+- **i18n (Fase 2 concluída)**: `next-intl` com locale por cookie (`NEXT_LOCALE`, sem rota `[locale]`) — `src/i18n/request.ts` lê o cookie, `src/i18n/actions.ts` expõe a server action `setLocale` chamada pela Navbar
 - **Navbar responsiva** (`src/components/layout/Navbar.tsx`):
-  - Nome à esquerda, links centralizados no desktop (`absolute left-1/2 -translate-x-1/2`)
-  - Menu hamburguer no mobile com `AnimatePresence` + `motion.div` (Framer Motion)
-  - Dropdown animado com `initial/animate/exit` — entrada e saída suaves
-  - Toggle dark/light com `useEffect + mounted` para evitar hydration mismatch
-  - Botão PT (i18n visual, sem lógica — Fase 2)
-  - Links GitHub e LinkedIn com `react-icons/fa`
-  - `overflow-x-hidden` no body para evitar scroll lateral no mobile
-  - Commit: `28ddb8b`
+  - Nome à esquerda, links centralizados no desktop, sublinhado animado
+  - Menu hamburguer no mobile com `AnimatePresence` + `motion.div`
+  - Toggle dark/light com ícone animado (`AnimatePresence`) e `useEffect + mounted` para evitar hydration mismatch
+  - Troca de idioma real via `setLocale` (server action) + `router.refresh()`
+  - Sem fundo fixo (`bg-*` removido) para o ParticleCanvas aparecer por trás
 - **ParticleCanvas** (`src/components/ui/ParticleCanvas.tsx`):
-  - Canvas `fixed inset-0 z-0` — cobre toda a página como fundo
-  - 100 partículas com posição e velocidade aleatórias
-  - Loop de animação com `requestAnimationFrame`
-  - Partículas quicam nas 4 bordas (`vx *= -1` / `vy *= -1`)
-  - Canvas dimensionado com `window.innerWidth` / `window.innerHeight`
-  - Usado em `page.tsx` antes do Hero
-- **Hero** atual (`src/components/sections/Hero.tsx`):
-  - Sem `bg-gray-950` (fundo é o ParticleCanvas)
-  - `relative z-10` para ficar na frente do canvas
-  - Animações em sequência com Framer Motion
+  - Canvas `fixed inset-0 -z-10` (corrigido de `z-0`, que renderizava por cima do conteúdo)
+  - 90 partículas, opacidade reduzida (0.35 dark / 0.2 light) para não competir com o texto
+  - Loop de animação com `requestAnimationFrame`, quicam nas 4 bordas
+  - Usado em `page.tsx`, atrás de todas as seções
+- **Hero** (`src/components/sections/Hero.tsx`): foto de perfil circular, eyebrow + nome + cargo + descrição, 3 CTAs (Ver Projetos / Contato / Baixar CV — PDF estático por idioma via `siteConfig.cv`), blob radial pulsante com `bg-primary/10`
+- **Todas as seções com conteúdo real**, sincronizado com o LinkedIn atual: About, Skills, Experience, Projects (case FrotaON) e Contact — sem blocos de cor por seção, sem linhas divisórias entre seções
+- **Componentização**: `SectionEyebrow`, `useScrollReveal`, `siteConfig` (nome/email/redes/foto/CV) compartilhados entre seções
 
 ### Pendências
-- ParticleCanvas: próximo passo é fazer as partículas formarem **shapes por seção** (dispersas → forma → dispersas)
-- Hero: layout ainda básico, sem foto
-- Navbar: botão PT sem lógica de i18n (intencional, Fase 2)
-- Nenhuma seção além do Hero tem conteúdo ainda
-
-### Próximo passo
-1. Adicionar `targetX` e `targetY` em cada partícula
-2. Definir pontos que formam shapes (pasta para Projetos, etc.)
-3. Usar `IntersectionObserver` para detectar qual seção está visível
-4. Interpolar posição atual → target com lerp (`x += (targetX - x) * 0.05`)
+- ParticleCanvas: shapes por seção (dispersa → forma → dispersa) com lerp — ainda não implementado, é so um fundo ambiente por enquanto
+- Deploy na Vercel
 
 ---
 
 ## Seções Planejadas
 
-| # | Seção | Propósito |
-|---|---|---|
-| 1 | Hero | Primeira impressão — quem você é |
-| 2 | Sobre | Seu perfil dev/empreendedor |
-| 3 | Habilidades | Tecnologias que você domina |
-| 4 | Projetos | Prova do que você constrói |
-| 5 | Experiência | Sua trajetória |
-| 6 | Contato | Como te encontrar |
+| # | Seção | Propósito | Status |
+|---|---|---|---|
+| 1 | Hero | Primeira impressão — quem você é | ✅ |
+| 2 | Sobre | Seu perfil dev/empreendedor | ✅ |
+| 3 | Habilidades | Tecnologias que você domina | ✅ |
+| 4 | Projetos | Prova do que você constrói (FrotaON) | ✅ |
+| 5 | Experiência | Sua trajetória | ✅ |
+| 6 | Contato | Como te encontrar | ✅ |
 
 ---
 
 ## Roadmap de Features
 
-1. **Fase 1 (atual):** Portfólio base em PT-BR
-2. **Fase 2:** Internacionalização PT-BR + EN (usar `next-intl`)
-3. **Fase 3:** Botão de export de currículo em PDF por idioma
+1. **Fase 1:** Portfólio base em PT-BR — concluída
+2. **Fase 2:** Internacionalização PT-BR + EN (`next-intl`, cookie-based) — concluída
+3. **Fase 3:** Botão de download de currículo em PDF por idioma — concluída (PDF estático pré-gerado, sem export dinâmico)

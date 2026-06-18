@@ -3,20 +3,22 @@ import {
   About,
   Experience,
   Projects,
-  Skills
-} from '../../components/sections'
-import { ParticleCanvas } from '@/components/ui/ParticleCanvas';
+  Skills,
+  Contact
+} from '../components/sections'
+import { ParticleCanvas } from '@/components/ui/ParticleCanvas'
 
 export default function Home() {
   return (
     <div>
+      <ParticleCanvas/>
       <main>
-        <ParticleCanvas/>
         <Hero/>
         <About/>
         <Experience/>
         <Projects/>
         <Skills/>
+        <Contact/>
       </main>
     </div>
   );

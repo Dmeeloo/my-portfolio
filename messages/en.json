@@ -1,6 +1,162 @@
 {
-  "name": "Gabriel de Melo Meurer",
-  "position": "Software Engineer",
-  "description": "2 years of experience with React, Next.js, OracleDB, JavaScript, Python, and Java",
-  "donwCv": "Download CV"
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "<Hi, I'm />",
+    "role": "Junior Software Engineer",
+    "description": "Focused on AI-assisted development with Claude Code — code generation, agent orchestration, and day-to-day task automation. Stack: React, Node.js, Python, and SQL.",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Contact",
+    "ctaCv": "Download CV"
+  },
+  "about": {
+    "eyebrow": "About",
+    "headingPrefix": "Dev & ",
+    "headingAccent": "Entrepreneur",
+    "paragraph1": "I started as an IT Support Technician and, in just over a year, grew into Software Engineer II — through an internship, Software Engineer I, and an internal promotion at GTF.",
+    "paragraph2": "I use Claude Code daily as part of my actual development workflow — generating and reviewing code, orchestrating agents for multi-step tasks, and automating day-to-day scripts. It's not just experimenting, it's how I build.",
+    "paragraph3": "In parallel, I work as a Front-End Developer (React) at devfellowship, which gives me exposure to different stacks and product contexts.",
+    "paragraph4": "I'm currently studying Systems Analysis and Development, and open to Junior/Mid-level Software Engineer opportunities where I can get technical mentorship, grow quickly, and take on increasingly strategic work.",
+    "fileName": "gabriel.ts",
+    "code": [
+      [
+        { "t": "const ", "c": "text-violet-400" },
+        { "t": "gabriel", "c": "text-sky-300" },
+        { "t": " = {", "c": "text-zinc-400" }
+      ],
+      [
+        { "t": "  role", "c": "text-blue-300" },
+        { "t": ": ", "c": "text-zinc-500" },
+        { "t": "\"Junior Software Engineer\"", "c": "text-emerald-400" },
+        { "t": ",", "c": "text-zinc-600" }
+      ],
+      [
+        { "t": "  type", "c": "text-blue-300" },
+        { "t": ": ", "c": "text-zinc-500" },
+        { "t": "\"Entrepreneur\"", "c": "text-emerald-400" },
+        { "t": ",", "c": "text-zinc-600" }
+      ],
+      [
+        { "t": "  experience", "c": "text-blue-300" },
+        { "t": ": ", "c": "text-zinc-500" },
+        { "t": "\"1+ year\"", "c": "text-emerald-400" },
+        { "t": ",", "c": "text-zinc-600" }
+      ],
+      [
+        { "t": "  stack", "c": "text-blue-300" },
+        { "t": ": [", "c": "text-zinc-400" }
+      ],
+      [
+        { "t": "    \"React\"", "c": "text-emerald-400" },
+        { "t": ", ", "c": "text-zinc-500" },
+        { "t": "\"Node.js\"", "c": "text-emerald-400" },
+        { "t": ",", "c": "text-zinc-600" }
+      ],
+      [
+        { "t": "    \"Python\"", "c": "text-emerald-400" },
+        { "t": ", ", "c": "text-zinc-500" },
+        { "t": "\"Oracle SQL\"", "c": "text-emerald-400" },
+        { "t": ",", "c": "text-zinc-600" }
+      ],
+      [
+        { "t": "    \"Claude Code\"", "c": "text-emerald-400" }
+      ],
+      [
+        { "t": "  ]", "c": "text-zinc-400" },
+        { "t": ",", "c": "text-zinc-600" }
+      ],
+      [
+        { "t": "  mindset", "c": "text-blue-300" },
+        { "t": ": ", "c": "text-zinc-500" },
+        { "t": "\"build → learn → repeat\"", "c": "text-amber-300" }
+      ],
+      [{ "t": "}", "c": "text-zinc-400" }]
+    ],
+    "stats": [
+      { "value": "1+", "label": "Years of experience" },
+      { "value": "5+", "label": "Projects delivered" },
+      { "value": "12+", "label": "Tech stack" }
+    ]
+  },
+  "skills": {
+    "eyebrow": "Skills",
+    "headingPrefix": "Tools I use to ",
+    "headingAccent": "go from idea to shipped code",
+    "paragraph": "The stack I use day to day to build products from the database to the final interface.",
+    "groups": {
+      "highlight": "Highlights",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Tools"
+    }
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "headingPrefix": "Things I've ",
+    "headingAccent": "built",
+    "paragraph": "Real projects, not just exercises — built to solve an actual problem.",
+    "internalBadge": "Internal Project",
+    "items": [
+      {
+        "name": "FrotaON",
+        "context": "GTF · Logistics & Fleet",
+        "description": "A fleet management application built together with one teammate, replacing a manual process with an automated workflow for requests, approvals, and vehicle checks. Web built with React, mobile app with React Native.",
+        "branding": "Also designed the app's visual identity: name, logo, and color palette.",
+        "tags": ["React", "React Native", "Node.js", "Oracle SQL"],
+        "images": [
+          { "src": "/projects/frotaon-mobile-dark.jpeg", "alt": "FrotaON — dark theme" },
+          { "src": "/projects/frotaon-mobile-light.jpeg", "alt": "FrotaON — light theme" }
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "headingPrefix": "A path between ",
+    "headingAccent": "code and business",
+    "roles": [
+      {
+        "company": "GTF",
+        "role": "Software Engineer II",
+        "progression": "IT Support Apprentice → Software Development Apprentice → Software Engineer I → Software Engineer II",
+        "meta": "Maringá, PR, Brazil · Hybrid · Full-time",
+        "period": "May 2025 — Present",
+        "current": true,
+        "description": "Promoted from Software Engineer I to Software Engineer II, taking on greater autonomy to scope and deliver features independently. Co-built FrotaON with one teammate, a logistics application that replaced a manual process with an automated workflow. Built and maintained 8+ APIs and contributed to 10+ BI dashboards over datasets with millions of records, using React, Node.js, Python, and optimized Oracle SQL queries.",
+        "tags": ["React", "Node.js", "Python", "Oracle SQL", "Power BI"]
+      },
+      {
+        "company": "devfellowship",
+        "role": "Front-end Developer",
+        "meta": "Indirect contract · Remote · Part-time",
+        "period": "Jun 2025 — Present",
+        "current": true,
+        "description": "Front-end development for web systems, concurrent with my role at GTF.",
+        "tags": ["React", "Frontend"]
+      },
+      {
+        "company": "Unidev TI",
+        "role": "Software Development Lead (Consultant → Director)",
+        "meta": "Self-employed · Hybrid",
+        "period": "Mar 2025 — Jan 2026",
+        "current": false,
+        "description": "Led a small software development team, managing project scope, priorities, and delivery for client software projects. Applied Git-based workflows and project management practices in a self-employed/freelance capacity.",
+        "tags": ["Project Management", "Git"]
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "headingPrefix": "Let's build ",
+    "headingAccent": "something together",
+    "paragraph": "I'm always open to new projects, ideas, and opportunities. Send a message and I'll get back to you quickly.",
+    "commandVerb": "contact",
+    "commandFlag": "--send",
+    "emailAria": "Email"
+  }
 }
