@@ -45,7 +45,7 @@ export function Hero() {
               alt={siteConfig.name}
               fill
               sizes="(min-width: 768px) 224px, (min-width: 640px) 192px, 160px"
-              quality={95}
+              quality={100}
               className="object-cover object-[center_15%]"
               priority
             />
