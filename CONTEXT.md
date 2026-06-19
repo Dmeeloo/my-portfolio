@@ -66,12 +66,12 @@ Como me ensinar:
 ### Concluído
 - Fonte **Space Grotesk** + `ThemeProvider` configurados
 - **Design tokens**: `--primary`/`--ring`/`--sidebar-primary`/`--sidebar-ring` remapeados para o azul de marca (`oklch(54.6% 0.245 262.881)` ≈ `#2563EB`) direto no tema shadcn — sem cor hardcoded espalhada pelo código
-- **i18n (Fase 2 concluída)**: `next-intl` com locale por cookie (`NEXT_LOCALE`, sem rota `[locale]`) — `src/i18n/request.ts` lê o cookie, `src/i18n/actions.ts` expõe a server action `setLocale` chamada pela Navbar
+- **i18n (Fase 2 concluída)**: `next-intl` com locale por cookie (`NEXT_LOCALE`, sem rota `[locale]`) — `src/i18n/request.ts` lê o cookie; a Navbar seta o cookie direto via `document.cookie` (sem server action, pra evitar um round-trip extra) e chama `router.refresh()`
 - **Navbar responsiva** (`src/components/layout/Navbar.tsx`):
   - Nome à esquerda, links centralizados no desktop, sublinhado animado
   - Menu hamburguer no mobile com `AnimatePresence` + `motion.div`
   - Toggle dark/light com ícone animado (`AnimatePresence`) e `useEffect + mounted` para evitar hydration mismatch
-  - Troca de idioma real via `setLocale` (server action) + `router.refresh()`
+  - Troca de idioma real via `document.cookie` (client-side, sem server action) + `router.refresh()`
   - Sem fundo fixo (`bg-*` removido) para o ParticleCanvas aparecer por trás
 - **ParticleCanvas** (`src/components/ui/ParticleCanvas.tsx`):
   - Canvas `fixed inset-0 -z-10` (corrigido de `z-0`, que renderizava por cima do conteúdo)

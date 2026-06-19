@@ -10,7 +10,6 @@ import { useLocale, useTranslations } from "next-intl"
 import { Sun, Moon, Menu, X } from "lucide-react"
 import { FaLinkedin, FaInstagram } from "react-icons/fa"
 import { motion, AnimatePresence } from "framer-motion"
-import { setLocale } from "@/i18n/actions"
 import { siteConfig } from "@/lib/site-config"
 
 export function Navbar() {
@@ -36,8 +35,8 @@ export function Navbar() {
         }
     }
 
-    async function handleLocaleChange(){
-        await setLocale(otherLocale)
+    function handleLocaleChange(){
+        document.cookie = `NEXT_LOCALE=${otherLocale}; path=/; max-age=${60 * 60 * 24 * 365}`
         router.refresh()
     }
 
