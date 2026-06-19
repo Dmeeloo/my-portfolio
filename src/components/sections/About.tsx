@@ -22,7 +22,7 @@ export function About() {
     <section
       id="sobre"
       ref={ref}
-      className="py-28 px-6 md:px-12"
+      className="py-16 sm:py-20 md:py-28 px-6 md:px-12"
     >
       <div className="max-w-6xl mx-auto">
         <SectionEyebrow {...entry(0)} label={t.raw("eyebrow")} className="mb-14" />

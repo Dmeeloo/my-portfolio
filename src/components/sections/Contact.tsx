@@ -24,7 +24,7 @@ export function Contact() {
     <section
       id="contato"
       ref={ref}
-      className="py-28 px-6 md:px-12 bg-zinc-950"
+      className="py-16 sm:py-20 md:py-28 px-6 md:px-12 bg-zinc-950"
     >
       <div className="max-w-4xl mx-auto text-center">
         <SectionEyebrow {...entry(0)} label={t.raw("eyebrow")} center className="mb-6" />
@@ -49,12 +49,12 @@ export function Contact() {
           whileHover={{ scale: reduce ? 1 : 1.03 }}
           whileTap={{ scale: reduce ? 1 : 0.98 }}
           href={`mailto:${EMAIL}`}
-          className="group inline-flex items-center gap-3 rounded-xl border border-zinc-800 bg-[#0d0d10] px-6 py-4 font-mono text-sm sm:text-base mb-12 hover:border-primary transition-colors duration-300"
+          className="group inline-flex flex-wrap max-w-full items-center justify-center gap-2 sm:gap-3 rounded-xl border border-zinc-800 bg-[#0d0d10] px-4 sm:px-6 py-4 font-mono text-sm sm:text-base mb-12 hover:border-primary transition-colors duration-300"
         >
           <span className="text-zinc-500">$</span>
           <span className="text-emerald-400">{t.raw("commandVerb")}</span>
           <span className="text-zinc-500">{t.raw("commandFlag")}</span>
-          <span className="text-zinc-200">{EMAIL}</span>
+          <span className="text-zinc-200 break-all">{EMAIL}</span>
           <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
         </motion.a>
 
