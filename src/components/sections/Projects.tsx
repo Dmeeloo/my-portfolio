@@ -26,22 +26,22 @@ type ProjectItem = {
 
 function ImageStack({
   images,
-  cardWidth,
-  cardHeight,
+  ratio,
+  maxWidth,
   sizes,
 }: {
   images: ProjectImage[]
-  cardWidth: number
-  cardHeight: number
+  ratio: string
+  maxWidth: number
   sizes: string
 }) {
   const [frontIndex, setFrontIndex] = useState(0)
-  const offset = 16
+  const offset = 8
 
   return (
     <div
-      className="relative shrink-0"
-      style={{ width: cardWidth + offset, height: cardHeight + offset }}
+      className="relative w-full"
+      style={{ maxWidth: `${maxWidth}px`, aspectRatio: ratio }}
     >
       {images.map((image, idx) => {
         const isFront = idx === frontIndex
@@ -53,10 +53,10 @@ function ImageStack({
               setFrontIndex(isFront ? (idx + 1) % images.length : idx)
             }
             className="absolute rounded-xl overflow-hidden border border-zinc-800 shadow-xl cursor-pointer"
-            style={{ width: cardWidth, height: cardHeight, zIndex: isFront ? 2 : 1 }}
+            style={{ width: `${100 - offset}%`, height: `${100 - offset}%`, zIndex: isFront ? 2 : 1 }}
             animate={{
-              left: isFront ? offset : 0,
-              top: isFront ? offset : 0,
+              left: isFront ? `${offset}%` : "0%",
+              top: isFront ? `${offset}%` : "0%",
               rotate: isFront ? -3 : 4,
             }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -151,10 +151,15 @@ export function Projects() {
                   {((item.images && item.images.length > 0) || (item.webImages && item.webImages.length > 0)) && (
                     <div className="flex flex-wrap justify-center items-center gap-10 mt-10">
                       {item.images && item.images.length > 0 && (
-                        <ImageStack images={item.images} cardWidth={160} cardHeight={356} sizes="160px" />
+                        <ImageStack images={item.images} ratio="160/356" maxWidth={160} sizes="160px" />
                       )}
                       {item.webImages && item.webImages.length > 0 && (
-                        <ImageStack images={item.webImages} cardWidth={460} cardHeight={220} sizes="460px" />
+                        <ImageStack
+                          images={item.webImages}
+                          ratio="460/220"
+                          maxWidth={460}
+                          sizes="(min-width: 640px) 460px, 90vw"
+                        />
                       )}
                     </div>
                   )}

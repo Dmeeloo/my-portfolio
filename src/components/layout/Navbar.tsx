@@ -22,14 +22,14 @@ export function Navbar() {
 
     const [ openMenu, setOpenMenu ] = useState(false);
     const [ mounted, setMounted] = useState(false);
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
 
     useEffect(() => {
         setMounted(true);
     }, [])
 
     function toggleTheme(){
-        if( theme === 'dark') {
+        if( resolvedTheme === 'dark') {
             setTheme('light')
         } else {
             setTheme('dark')
@@ -47,7 +47,7 @@ export function Navbar() {
                 <div className="flex items-center gap-2 text-lg font-bold">
                     {mounted && (
                         <Image
-                            src={theme === 'dark' ? siteConfig.logo.dark : siteConfig.logo.light}
+                            src={resolvedTheme === 'dark' ? siteConfig.logo.dark : siteConfig.logo.light}
                             alt={siteConfig.name}
                             width={28}
                             height={28}
@@ -78,14 +78,14 @@ export function Navbar() {
                             <AnimatePresence mode="wait" initial={false}>
                                 {mounted && (
                                     <motion.span
-                                        key={theme}
+                                        key={resolvedTheme}
                                         initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
                                         animate={{ rotate: 0, opacity: 1, scale: 1 }}
                                         exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
                                         transition={{ duration: 0.25 }}
                                         className="inline-flex"
                                     >
-                                        {theme === 'dark' ? <Sun/> : <Moon/>}
+                                        {resolvedTheme === 'dark' ? <Sun/> : <Moon/>}
                                     </motion.span>
                                 )}
                             </AnimatePresence>
@@ -128,14 +128,14 @@ export function Navbar() {
                                     <AnimatePresence mode="wait" initial={false}>
                                         {mounted && (
                                             <motion.span
-                                                key={theme}
+                                                key={resolvedTheme}
                                                 initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
                                                 animate={{ rotate: 0, opacity: 1, scale: 1 }}
                                                 exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
                                                 transition={{ duration: 0.25 }}
                                                 className="inline-flex"
                                             >
-                                                {theme === 'dark' ? <Sun/> : <Moon/>}
+                                                {resolvedTheme === 'dark' ? <Sun/> : <Moon/>}
                                             </motion.span>
                                         )}
                                     </AnimatePresence>
