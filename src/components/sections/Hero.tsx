@@ -44,8 +44,7 @@ export function Hero() {
               src={siteConfig.photo}
               alt={siteConfig.name}
               fill
-              sizes="(min-width: 768px) 224px, (min-width: 640px) 192px, 160px"
-              quality={100}
+              unoptimized
               className="object-cover object-[center_15%]"
               priority
             />
